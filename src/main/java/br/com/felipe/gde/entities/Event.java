@@ -36,7 +36,7 @@ public class Event implements Serializable{
 	
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public long getEvent_id() {
 		return event_id;
 	}
@@ -77,17 +77,17 @@ public class Event implements Serializable{
 		this.user_event = user_event;
 	}
 
-
 	@JoinTable(name = "event_has_document", joinColumns = {
 			 @JoinColumn(name = "event_id", referencedColumnName = "event_id", nullable = false)}, inverseJoinColumns = {
 			 @JoinColumn(name = "document_id", referencedColumnName = "document_id", nullable = false)})
 			 @ManyToMany
-
 	public List<Document> getDocuments() {
 		return documents;
 	}
 	public void setDocuments(List<Document> documents) {
 		this.documents = documents;
 	}
+
+	
 	
 }

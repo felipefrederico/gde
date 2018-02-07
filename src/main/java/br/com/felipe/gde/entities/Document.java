@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+
+
 @Entity
 @Table(name = "document")
 public class Document {
@@ -17,8 +19,6 @@ public class Document {
 	private long document_id;
 	private String name;
 	private String description;
-
-	@ManyToMany(mappedBy = "documents")
 	private List<Event> events;
 
 	public Document() {
@@ -26,7 +26,7 @@ public class Document {
 	}
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	public long getDocument_id() {
 		return document_id;
 	}
@@ -48,17 +48,19 @@ public class Document {
 	public String getDescription() {
 		return description;
 	}
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
+	
+	@ManyToMany(mappedBy = "documents")
 	public List<Event> getEvents() {
 		return events;
 	}
-
 	public void setEvents(List<Event> events) {
 		this.events = events;
 	}
+
+	
 
 }
