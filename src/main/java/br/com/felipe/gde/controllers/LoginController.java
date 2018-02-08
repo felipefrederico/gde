@@ -19,7 +19,6 @@ public class LoginController {
 	@RequestMapping(value="/login",method=RequestMethod.POST)
 	public String login(User user) {
 		
-		System.out.println("Nome: " + user.getName() + " Senha: " + user.getPassword());
 		
 		return "redirect:/login";
 	}
