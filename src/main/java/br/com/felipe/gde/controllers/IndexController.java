@@ -1,29 +1,22 @@
 package br.com.felipe.gde.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import br.com.felipe.gde.entities.User;
-import br.com.felipe.gde.repositories.UserRepository;
+import br.com.felipe.gde.services.UserService;
 
 @Controller
 public class IndexController {
 	
-	private UserRepository userRepository;
-	
-	public IndexController(UserRepository userRepository) {
-		this.userRepository = userRepository;
-	}
-	
+	@Autowired
+	private UserService userService;
+		
 	@RequestMapping("/")
 	public String index(Model model) {
-		User user = new User();
-		user.setEmail("felipe.frederico@gmail.com");
-		user.setName("Felipe Frederico");
-		user.setPassword("123456");
-		userRepository.save(user);
-		model.addAttribute("users", userRepository.findAll());
+	
+		model.addAttribute("users", userService.getAllUser());
 			
 		return "index";
 	}
